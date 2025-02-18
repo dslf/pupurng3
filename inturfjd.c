@@ -4,37 +4,31 @@
 #include <stdlib.h>
 
 #define LENGTH 5
-#define COUNT 120
+#define COUNT 2000
 
 int main() {
 
-    char j[] = "abcdefghijklmnopqrstuvwxyz";
-    int count_chars[26] = {0};
-    int len = strlen(j), random_char, prev_random_char = 42;
-    
+    char char_array[] = "abcdefghijklmnopqrstuvwxyz";
+    int char_count[26] = {0};
+    int len = strlen(char_array), char_random, char_prev_random = 42;
     
     srand(time(NULL));
 
     for (int i = 0; i < COUNT; i++) {
         for (int k = 0; k < LENGTH; k++) {
-            random_char = rand() % len;
-            while (random_char == prev_random_char) 
-                random_char = rand() % len;
-            putchar(j[random_char]);
-            count_chars[random_char]++;
-            prev_random_char = random_char;
-
+            char_random = rand() % len;
+            while (char_random == char_prev_random) 
+                char_random = rand() % len;
+            putchar(char_array[char_random]);
+            char_count[char_random]++;
+            char_prev_random = char_random;
         }
         printf(" ");
     }
 
-    printf("\n\n--------\n\nchar(count): ");
-    for (int i = 0; i < len; i++)
-        //if (count_chars[i] != 0) 
-            printf("%c(%d) ", j[i], count_chars[i]);
-    printf("\n\nused chars: %s (len: %d)\n", j, len);
-
-
-//    printf("Hello, World\n");
+    printf("\n\n--------\nchar(count): ");
+    for (int i = 0; i < len; i++)        
+            printf("%c(%d) ", char_array[i], char_count[i]);
+    printf("\n\nused chars: %s (len: %d)\n", char_array, len);
     return 0;
 }
